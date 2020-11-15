@@ -1,31 +1,28 @@
-// using object type to specify what will be in the object
-// const person: {
-//   name: string;
-//   age: number;
-// } = {
-//   name: "Django Reinhardt",
-//   age: 110,
-// };
+type Combineable = number | string;
+type ConversionDiscriptor = "as-number" | "as-string";
 
-enum Role {
-  ADMIN,
-  READ_ONLY,
-  AUTHOR,
-}
-
-const person = {
-  name: "Django Reinhardt",
-  age: 110,
-  hobbies: ["Guitar", "Music"],
-  role: Role.ADMIN,
+const combine = (
+  input1: Combineable,
+  input2: Combineable,
+  resultConversion: ConversionDiscriptor
+) => {
+  let result;
+  if (
+    (typeof input1 === "number" && typeof input2 === "number") ||
+    resultConversion === "as-number"
+  ) {
+    result = +input1 + +input2;
+  } else {
+    result = input1.toString() + input2.toString();
+  }
+  return result;
 };
 
-console.log(person.name);
+const combinedNums = combine(12, 293, "as-number");
+console.log(combinedNums);
 
-for (const hobby of person.hobbies) {
-  console.log(hobby);
-}
+const combinedStringNums = combine("12", "293", "as-string");
+console.log(combinedStringNums);
 
-if (person.role === Role.ADMIN) {
-  console.log("is Admin");
-}
+const combinedNames = combine("Dave", "Big John", "as-string");
+console.log(combinedNames);

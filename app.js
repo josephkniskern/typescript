@@ -1,28 +1,17 @@
-// using object type to specify what will be in the object
-// const person: {
-//   name: string;
-//   age: number;
-// } = {
-//   name: "Django Reinhardt",
-//   age: 110,
-// };
-var Role;
-(function (Role) {
-    Role[Role["ADMIN"] = 0] = "ADMIN";
-    Role[Role["READ_ONLY"] = 1] = "READ_ONLY";
-    Role[Role["AUTHOR"] = 2] = "AUTHOR";
-})(Role || (Role = {}));
-var person = {
-    name: "Django Reinhardt",
-    age: 110,
-    hobbies: ["Guitar", "Music"],
-    role: Role.ADMIN
+var combine = function (input1, input2, resultConversion) {
+    var result;
+    if ((typeof input1 === "number" && typeof input2 === "number") ||
+        resultConversion === "as-number") {
+        result = +input1 + +input2;
+    }
+    else {
+        result = input1.toString() + input2.toString();
+    }
+    return result;
 };
-console.log(person.name);
-for (var _i = 0, _a = person.hobbies; _i < _a.length; _i++) {
-    var hobby = _a[_i];
-    console.log(hobby);
-}
-if (person.role === Role.ADMIN) {
-    console.log("is Admin");
-}
+var combinedNums = combine(12, 293, "as-number");
+console.log(combinedNums);
+var combinedStringNums = combine("12", "293", "as-string");
+console.log(combinedStringNums);
+var combinedNames = combine("Dave", "Big John", "as-string");
+console.log(combinedNames);
